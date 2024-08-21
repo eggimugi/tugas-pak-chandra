@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belajar JavaScript</title>
+    <script>
+      fungsi = () => {
+        let tulisan = "moklet";
+        document.getElementById("coba_tulisan").value = tulisan;
+      };
+      fungsi2 = () => {
+        let vari = "telkom";
+        vari = "SMK Telkom";
+        const vari2 = "wikusama";
+        // vari2 = "aremania"
+        document.getElementById("tulisan").innerHTML = vari2;
+      };
+    </script>
+  </head>
+  <body>
+    <button type="button" onclick="document.getElementById('demo').innerHTML = Date()">Click me to display Date and Time.</button>
+    <p id="demo"></p>
+
+    <button type="button" onclick="fungsi()">Try</button>
+    <input type="text" id="coba_tulisan" class="form-control" readonly />
+
+    <button type="button" onclick="fungsi2()">Coba</button>
+    <p id="tulisan"></p>
+    
+    <a href="#" onclick="alert('Hello World');"> Click Me </a>
+  </body>
+</html>

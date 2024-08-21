@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .login-container {
+            max-width: 900px;
+            margin: 50px auto;
+            background-color: white;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+        }
+        .info-panel {
+            background-color: #0a0a0a;
+            color: white;
+            padding: 30px;
+            width: 50%;
+        }
+        .info-panel h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .info-panel p {
+            font-size: 16px;
+        }
+        .login-panel {
+            padding: 30px;
+            width: 50%;
+        }
+        .btn-primary {
+            background-color: #0a58ca;
+            border: none;
+        }
+        .btn-outline-primary {
+            border-color: #0a58ca;
+            color: #0a58ca;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <!-- Left side (Info Panel) -->
+        <div class="info-panel">
+            <h2>Get an exclusive look at the vision for the future of Webflow</h2>
+            <p>We’re building a unified Website Experience Platform, otherwise known as WXP. With it, we’ll be taking the most important digital asset — the website — and creating an integrated and visual-first platform that allows you to operate at even faster speeds and higher efficiency.</p>
+            <button class="btn btn-primary mt-3">Learn all about it</button>
+        </div>
+        <!-- Right side (Login Panel) -->
+        <div class="login-panel">
+            <h3 class="mb-4">Sign in to Dribbble</h3>
+            <button class="btn btn-outline-primary btn-block mb-3">Sign in with Google</button>
+            <p class="text-center text-muted">or sign in with email</p>
+            <form>
+                <div class="form-group">
+                    <label for="username">Username or Email</label>
+                    <input type="email" class="form-control" id="username" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                    <small class="form-text text-right"><a href="#">Forgot?</a></small>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </form>
+            <p class="text-center text-muted mt-3">Don't have an account? <a href="#">Sign up</a></p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
