@@ -1,29 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volleyball Scoreboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container text-center mt-5">
-        <h1>Volleyball Scoreboard</h1>
-        <div class="row mt-4">
-            <div class="col">
-                <h2>Team 1</h2>
-                <input type="number" id="team1Score" class="form-control" placeholder="Score team 1">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scoreboard Voli</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <style>
+      .scoreboard {
+        width: 80%;
+        margin: 40px auto;
+        text-align: center;
+        background-color: #f7f7f7;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .team-score {
+        font-size: 48px;
+        font-weight: bold;
+        color: #337ab7;
+      }
+      .set-score {
+        font-size: 24px;
+        font-weight: bold;
+        color: #666;
+      }
+      .result {
+        font-size: 36px;
+        font-weight: bold;
+        color: #337ab7;
+      }
+      .btn {
+        margin: 10px;
+      }
+
+      nav {
+        background-color: #43766c;
+      }
+
+      body {
+        background-color: #f8fae5;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="container">
+        <a class="navbar-brand text-light" href="#"> VolleyballScoreboard </a>
+      </div>
+    </nav>
+    <!-- Akhir Navbar -->
+
+    <div class="row justify-content-center align-items-center" style="height: 80vh">
+      <div class="col-md-4">
+        <img src="volley.png" alt="voli" class="img-fluid" />
+      </div>
+      <div class="col-md-8">
+        <div class="scoreboard bg-success-subtle">
+          <h1>Scoreboard Voli</h1>
+          <div class="row">
+            <div class="col-md-6">
+              <h2>Team A</h2>
+              <p class="team-score" id="team-a-score">0</p>
+              <button class="btn btn-secondary" id="subtract-point-a">Kurangi Poin A</button>
             </div>
-            <div class="col">
-                <h2>Team 2</h2>
-                <input type="number" id="team2Score" class="form-control" placeholder="Score team 2">
-                <input type="number" id="team2Score" class="form-control">
+            <div class="col-md-6">
+              <h2>Team B</h2>
+              <p class="team-score" id="team-b-score">0</p>
+              <button class="btn btn-secondary" id="subtract-point-b">Kurangi Poin B</button>
             </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="set-score" id="set-score">Sets: 0-0</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="result" id="result"></p>
+            </div>
+          </div>
+          <button class="btn btn-primary" id="add-point-a">Tambah Poin A</button>
+          <button class="btn btn-primary" id="add-point-b">Tambah Poin B</button>
+          <button class="btn btn-danger" id="reset-score">Reset Skor</button>
         </div>
-        <button class="btn btn-primary mt-3" onclick="checkWinner()">Check Result</button>
-        <h3 class="mt-4" id="result"></h3>
+      </div>
     </div>
 
-    <script src="scoreboard.js"></script>
-</body>
+    <script>
+      let teamAScore = 0;
+      let teamBScore = 0;
+      let sets = [0, 0];
+
+      document.getElementById("add-point-a").addEventListener("click", () => {
+        if (sets[0] < 2 && sets[1] < 2) {
+          teamAScore++;
+          document.getElementById("team-a-score").innerHTML = teamAScore;
+          checkSetWin();
+        }
+      });
+
+      document.getElementById("add-point-b").addEventListener("click", () => {
+        if (sets[0] < 2 && sets[1] < 2) {
+          teamBScore++;
+          document.getElementById("team-b-score").innerHTML = teamBScore;
+          checkSetWin();
+        }
+      });
+
+      document.getElementById("subtract-point-a").addEventListener("click", () => {
+        if (teamAScore > 0 && sets[0] < 2 && sets[1] < 2) {
+          teamAScore--;
+          document.getElementById("team-a-score").innerHTML = teamAScore;
+        }
+      });
+
+      document.getElementById("subtract-point-b").addEventListener("click", () => {
+        if (teamBScore > 0 && sets[0] < 2 && sets[1] < 2) {
+          teamBScore--;
+          document.getElementById("team-b-score").innerHTML = teamBScore;
+        }
+      });
+
+      document.getElementById("reset-score").addEventListener("click", () => {
+        teamAScore = 0;
+        teamBScore = 0;
+        sets = [0, 0];
+        document.getElementById("team-a-score").innerHTML = teamAScore;
+        document.getElementById("team-b-score").innerHTML = teamBScore;
+        document.getElementById("set-score").innerHTML = "Sets: 0-0";
+        document.getElementById("result").innerHTML = "";
+      });
+
+      function checkSetWin() {
+        if (teamAScore >= 25 && teamAScore - teamBScore >= 2) {
+          sets[0]++;
+          teamAScore = 0;
+          teamBScore = 0;
+          document.getElementById("team-a-score").innerHTML = teamAScore;
+          document.getElementById("team-b-score").innerHTML = teamBScore;
+          document.getElementById("set-score").innerHTML = `Sets: ${sets[0]}-${sets[1]}`;
+          checkGameWin();
+        } else if (teamBScore >= 25 && teamBScore - teamAScore >= 2) {
+          sets[1]++;
+          teamAScore = 0;
+          teamBScore = 0;
+          document.getElementById("team-a-score").innerHTML = teamAScore;
+          document.getElementById("team-b-score").innerHTML = teamBScore;
+          document.getElementById("set-score").innerHTML = `Sets: ${sets[0]}-${sets[1]}`;
+          checkGameWin();
+        }
+      }
+
+      function checkGameWin() {
+        if (sets[0] === 2) {
+          document.getElementById("result").innerHTML = "Team A Menang!";
+          sets = [0, 0];
+        } else if (sets[1] === 2) {
+          document.getElementById("result").innerHTML = "Team B Menang!";
+          sets = [0, 0];
+        } else {
+          if (sets[0] < 2 && sets[1] < 2) {
+            document.getElementById("result").innerHTML = "";
+          }
+        }
+        document.getElementById("set-score").innerHTML = `Sets: ${sets[0]}-${sets[1]}`;
+      }
+    </script>
+  </body>
 </html>
